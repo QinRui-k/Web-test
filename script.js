@@ -70,7 +70,7 @@ analyzeButton.addEventListener('click', function() {
     };
 
     // 发送 POST 请求到后端（ngrok 提供的 URL）
-    fetch('https://b4ec-211-158-242-47.ngrok-free.app/process_data', {  // 使用 ngrok 提供的公网 URL
+    fetch('https://fe1c-211-158-242-47.ngrok-free.app/process_data', {  // 使用 ngrok 提供的公网 URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
