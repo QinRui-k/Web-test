@@ -7,10 +7,14 @@ CORS(app)  # 启用跨域支持
 # 用于处理接收到的年龄、体重和身高
 @app.route('/process_data', methods=['POST'])
 def process_data():
-    # 获取前端传来的数据
-    age = request.form.get('age')  # 获取年龄
-    weight = request.form.get('weight')  # 获取体重
-    height = request.form.get('height')  # 获取身高
+    # 获取前端传来的 JSON 数据
+    data = request.json  # 使用 .json 来解析 JSON 格式的请求体
+    age = data.get('age')  # 获取年龄
+    weight = data.get('weight')  # 获取体重
+    height = data.get('height')  # 获取身高
+
+    # 打印接收到的数据
+    print(f"Received data: Age={age}, Weight={weight}, Height={height}")
     
     # 验证数据是否完整
     if not age or not weight or not height:
