@@ -51,6 +51,43 @@ chooseVideoButton.addEventListener('click', function() {
 
 // 分析按钮，获取视频的第15帧和最后一帧并展示弹窗
 analyzeButton.addEventListener('click', function() {
+    // 获取用户输入的年龄、体重、身高
+    const age = ageInput.value;
+    const weight = weightInput.value;
+    const height = heightInput.value;
+
+    // 检查用户输入是否完整
+    if (!age || !weight || !height) {
+        alert('请填写所有字段！');
+        return;
+    }
+
+    // 构造请求体
+    const requestData = {
+        age: age,
+        weight: weight,
+        height: height
+    };
+
+    // 发送 POST 请求到后端（ngrok 提供的 URL）
+    fetch('https://b4ec-211-158-242-47.ngrok-free.app/process_data', {  // 使用 ngrok 提供的公网 URL
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+    })
+    .then(response => response.json())  // 如果后端返回数据，可以继续处理
+    .then(data => {
+        // 在此处可以根据后端返回的结果进行处理
+        console.log('Data sent to backend:', data);
+        // 目前不需要处理后端反馈，直接获取视频帧
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('发生错误，请稍后重试。');
+    });
+
     // 获取视频的第15帧和最后一帧
     const video = document.createElement('video');
     video.src = selectedVideo;

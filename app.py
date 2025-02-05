@@ -1,38 +1,30 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS  # 导入CORS模块
-import base64  # 导入base64模块
-import io
-from PIL import Image
-import numpy as np
 
 app = Flask(__name__)
 CORS(app)  # 启用跨域支持
 
-# 用于处理接收到的图片和数据
+# 用于处理接收到的年龄、体重和身高
 @app.route('/process_data', methods=['POST'])
 def process_data():
     # 获取前端传来的数据
-    age = request.form.get('age')
-    weight = request.form.get('weight')
-    height = request.form.get('height')
-    image_data = request.form.get('image')  # Base64编码的图片数据
+    age = request.form.get('age')  # 获取年龄
+    weight = request.form.get('weight')  # 获取体重
+    height = request.form.get('height')  # 获取身高
     
-    # 解析图片
-    image_bytes = base64.b64decode(image_data.split(',')[1])  # 去掉前缀 'data:image/jpeg;base64,' 等
-    image = Image.open(io.BytesIO(image_bytes))
-    
-    # 处理数据（例如：计算 BMI）
+    # 验证数据是否完整
+    if not age or not weight or not height:
+        return jsonify({'error': '请提供完整的年龄、体重和身高信息'}), 400
+
+    # 计算 BMI
     bmi = calculate_bmi(float(weight), float(height))
     
-    # 假设你有更复杂的处理程序，这里只是一个示例
-    # 将图片处理为 numpy 数组或进行其他处理
-    image_np = np.array(image)
-    
-    # 返回数据
+    # 返回计算结果
     response = {
+        "age": age,
+        "weight": weight,
+        "height": height,
         "bmi": bmi,
-        "image_width": image.width,
-        "image_height": image.height,
         "message": "数据处理成功"
     }
     return jsonify(response)
