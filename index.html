@@ -1,79 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>选择视频与输入数据</title>
-    
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视频上传与数据分析</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="content">
-        <h1>欢迎来到我的网站</h1>
-        <p>选择视频并输入相关数据，点击分析查看结果。</p>
-
-        <!-- 按钮容器 -->
-        <div class="button-container">
-            <button class="button" id="chooseVideoButton">选择视频</button>
-            <button class="button" id="analyzeButton" disabled>分析</button>
-        </div>
-
-        <!-- 输入数据控件 -->
-        <div class="input-container">
-            <div class="input-row">
-                <label for="age">年龄:</label>
-                <input type="number" id="age" placeholder="输入年龄" />
-            </div>
-            <div class="input-row">
-                <label for="weight">体重 (kg):</label>
-                <input type="number" id="weight" placeholder="输入体重" />
-            </div>
-            <div class="input-row">
-                <label for="height">身高 (cm):</label>
-                <input type="number" id="height" placeholder="输入身高" />
-            </div>
-        </div>
+  <div class="content">
+    <h1>视频上传与数据分析</h1>
+    <div class="input-container">
+      <div class="input-row">
+        <label for="age">年龄:</label>
+        <input type="number" id="age" placeholder="请输入年龄">
+      </div>
+      <div class="input-row">
+        <label for="weight">体重 (kg):</label>
+        <input type="number" id="weight" placeholder="请输入体重">
+      </div>
+      <div class="input-row">
+        <label for="height">身高 (cm):</label>
+        <input type="number" id="height" placeholder="请输入身高">
+      </div>
     </div>
-
-    <!-- 弹窗 -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span id="closeButton" class="close">&times;</span>
-
-            <!-- 第一页显示视频的第15帧和最后一帧 -->
-            <div id="page1" class="page">
-                <h2>视频第15帧和最后一帧：</h2>
-                <div id="imageContainer" style="display: flex; justify-content: center;">
-                    <img id="firstFrame" src="" alt="第15帧" style="max-width: 45%; margin-right: 20px;">
-                    <img id="lastFrame" src="" alt="最后一帧" style="max-width: 45%;">
-                </div>
-            </div>
-
-            <!-- 第二页显示第一个预设视频播放器 -->
-            <div id="page2" class="page" style="display: none;">
-                <h2>第一个预设视频播放器：</h2>
-                <video id="videoPlayer1" width="100%" controls>
-                    <source id="videoSource1" type="video/mp4">
-                    你的浏览器不支持视频标签。
-                </video>
-            </div>
-
-            <!-- 第三页显示第二个预设视频播放器 -->
-            <div id="page3" class="page" style="display: none;">
-                <h2>第二个预设视频播放器：</h2>
-                <video id="videoPlayer2" width="100%" controls>
-                    <source id="videoSource2" type="video/mp4">
-                    你的浏览器不支持视频标签。
-                </video>
-            </div>
-
-            <!-- 左右翻页箭头 -->
-            <button id="prevPage" class="arrow-button left-arrow">&#8592;</button>
-            <button id="nextPage" class="arrow-button right-arrow">&#8594;</button>
-        </div>
+    <div class="button-container">
+      <!-- 隐藏的文件输入，用于选择视频 -->
+      <input type="file" id="videoInput" accept="video/*" style="display:none;">
+      <button id="chooseVideoButton" class="button">选择视频</button>
+      <button id="analyzeButton" class="button" disabled>分析</button>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- 引入 JavaScript 文件 -->
+  <script src="script.js"></script>
 </body>
 </html>
