@@ -44,7 +44,7 @@ analyzeButton.addEventListener('click', function() {
   formData.append('video', selectedVideo);
 
   // 发送 POST 请求到后端（本地测试时使用本地地址）
-  fetch('https://abfa-211-158-240-93.ngrok-free.app/process_data', {
+  fetch('https://dbdb-211-158-240-93.ngrok-free.app/process_data', {
     method: 'POST',
     body: formData
   })
